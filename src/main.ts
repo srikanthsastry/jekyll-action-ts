@@ -145,7 +145,7 @@ async function run(): Promise<void> {
 						if (error.name === cache.ValidationError.name) {
 							throw error;
 						} else {
-							core.warning(error.message);
+							core.warning(getErrorMessage(error));
 						}
 					}
 					return;
@@ -252,7 +252,7 @@ async function run(): Promise<void> {
 							if (error.name === cache.ValidationError.name) {
 								throw error;
 							} else {
-								core.warning(error.message);
+								core.warning(getErrorMessage(error));
 							}
 						}
 						for (const element of formatFileArray) {
@@ -284,9 +284,9 @@ async function run(): Promise<void> {
 									if (error.name === cache.ValidationError.name) {
 										throw error;
 									} else if (error.name === cache.ReserveCacheError.name) {
-										core.info(error.message);
+										core.info(getErrorMessage(error));
 									} else {
-										core.warning(error.message);
+										core.warning(getErrorMessage(error));
 									}
 								}
 							}
@@ -316,9 +316,9 @@ async function run(): Promise<void> {
 							if (error.name === cache.ValidationError.name) {
 								throw error;
 							} else if (error.name === cache.ReserveCacheError.name) {
-								core.info(error.message);
+								core.info(getErrorMessage(error));
 							} else {
-								core.warning(error.message);
+								core.warning(getErrorMessage(error));
 							}
 						}
 						return;
@@ -327,7 +327,7 @@ async function run(): Promise<void> {
 			}
 		}
 	} catch (error) {
-		core.setFailed(error.message);
+		core.setFailed(getErrorMessage(error));
 	}
 }
 run();
